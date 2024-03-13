@@ -19,7 +19,6 @@ class Local extends Model
         'address',
         'region_id',
         'family_local_id',
-        'sub_family_local_id',
         'longitude',
         'altitude',
     ];
@@ -35,6 +34,14 @@ class Local extends Model
     public function user()
     {
         return $this->hasOne('App\Models\User');
+    }
+
+    /**
+     * Get the local family that owns the local.
+     */
+    public function localFamily()
+    {
+        return $this->belongsTo(Local_Family::class);
     }
 
     // Define other relationships here
