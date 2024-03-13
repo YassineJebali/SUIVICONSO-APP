@@ -58,5 +58,10 @@ class User extends Authenticatable
     {
     return $this->belongsToMany(UserGroup::class);
     }
+    
+    public function local()
+{
+    return $this->belongsTo('App\Models\Local');
+}
 
 }
