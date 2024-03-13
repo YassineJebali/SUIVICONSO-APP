@@ -44,5 +44,10 @@ class Local extends Model
         return $this->belongsTo(Local_Family::class);
     }
 
+    public function counters()
+    {
+        return $this->hasMany('App\Models\Counter', 'local_id');
+    }
+
     // Define other relationships here
 }
