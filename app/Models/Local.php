@@ -48,6 +48,11 @@ class Local extends Model
     {
         return $this->hasMany('App\Models\Counter', 'local_id');
     }
+    
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'local_id');
+    }
 
     // Define other relationships here
 }

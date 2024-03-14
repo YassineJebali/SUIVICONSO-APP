@@ -13,7 +13,7 @@ return new class extends Migration
     {
     Schema::create('counters', function (Blueprint $table) {
         $table->id();
-        $table->string('type');
+        $table->enum('type', ['gas', 'water', 'electricity']);
         $table->string('serial_number');
         $table->unsignedBigInteger('local_id');
         $table->decimal('avg_consommation', 8, 2);
