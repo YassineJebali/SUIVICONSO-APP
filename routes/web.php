@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::resource('regions', RegionController::class);
+
+Route::resource('users', UserController::class);
