@@ -51,17 +51,21 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-     /**
+    /**
      * Get the userGroups associated with the user.
      */
     public function userGroups()
     {
-    return $this->belongsToMany(UserGroup::class);
+        return $this->belongsToMany(UserGroup::class);
     }
-    
-    public function local()
-{
-    return $this->belongsTo('App\Models\Local');
-}
 
+    public function local()
+    {
+        return $this->belongsTo('App\Models\Local');
+    }
+
+    /*public function isAdmin()
+    {
+        return $this->role->name == 'admin'; // Change 'name' and 'admin' to match your implementation
+    }*/
 }
