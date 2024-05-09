@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\LoginUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\RegisterUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,8 @@ Route::get('/', function () {
 Route::resource('regions', RegionController::class);
 
 Route::resource('users', UserController::class);
+
+Route::get('/register', [RegisterUserController::class, 'register'])->name('register');
+Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
+Route::get('/login', [LoginUserController::class, 'login'])->name('login');
+Route::post('/login', [LoginUserController::class, 'store'])->name('login.store');

@@ -6,8 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
+    <title>NavBar</title>
+    <style>
+        .max-w-screen-xl {
+            position: relative;
+            /* This will make the dropdown position relative to this container */
+        }
 
-    <title>Laravel 10</title>
+        #user-dropdown {
+            position: absolute;
+            top: 40px;
+            /* Adjust this value to position the dropdown right under the user icon */
+            right: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,8 +28,9 @@
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ETAP</span>
+                <img src="{{ asset('images/etap-logo-sanstext.png') }}" class="h-8 blue-filter" alt="Logo" />
+                <span
+                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"style="letter-spacing: 0.1em;">ETAP</span>
             </a>
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <button type="button"
@@ -25,32 +38,26 @@
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                     data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo">
+                    <img class="w-8 h-8 rounded-full " src="/images/user-icon.png" alt="user photo">
                 </button>
                 <!-- Dropdown menu -->
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="user-dropdown">
                     <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                        <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                        <span class="block text-sm text-gray-900 dark:text-white">AgentTEST01</span>
+                        <span
+                            class="block text-sm  text-gray-500 truncate dark:text-gray-400">AgentTEST01@etap.tn</span>
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">à
+                                Propos</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                                out</a>
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Deconnexion</a>
+
                         </li>
                     </ul>
                 </div>
@@ -79,8 +86,15 @@
         </div>
     </nav>
 
-    <h1>navbar</h1>
     {{ $slot }}
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('user-menu-button').addEventListener('click', function() {
+                var dropdown = document.getElementById('user-dropdown');
+                dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
 </body>
 
 </html>

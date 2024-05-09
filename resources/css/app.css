@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.blue-filter {
+    filter: invert(1) hue-rotate(180deg);
+}

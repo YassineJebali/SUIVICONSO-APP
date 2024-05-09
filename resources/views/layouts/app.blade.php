@@ -7,7 +7,6 @@
     <title>Laravel 10</title>
 </head>
 <body>
-    <h1>app blade </h1>
     {{$slot}}
 </body>
 </html>
