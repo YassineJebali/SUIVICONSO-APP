@@ -6,7 +6,9 @@ export default {
     "./resources/**/*.vue",
 ],
   theme: {
-    extend: {},
+    extend: {colors: {
+      'custom-color-seasalt': '#FAFAFA', // Add your custom color here
+    }},
   },
   plugins: [],
 }
