@@ -26,7 +26,9 @@
 
 
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div
+            class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 "style="padding-left :20px;padding-right:40px;">
+            <!-- Logo and brand name -->
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{ asset('images/etap-logo.png') }}" class="h-12 blue-filter" alt="Logo" />
             </a>
@@ -74,11 +76,12 @@
                 <ul
                     class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 
-                    <x-navbar-link href="/" :active="request()->is('/')">Acceuil</x-navbar-link>
                     <x-navbar-link href="#" :active="request()->is('/dashboard')">Tableau de Bord</x-navbar-link>
-                    <x-navbar-link href="#" :active="request()->is('/counter')">Compteurs</x-navbar-link>
-                    <x-navbar-link href="#" :active="request()->is('/invoice')">Factures</x-navbar-link>
-                    <x-navbar-link href="#" :active="request()->is('/controls')">Gestion</x-navbar-link>
+                    <x-navbar-link href="#" :active="request()->is('/counter')">Factures</x-navbar-link>
+                    <x-navbar-link href="#" :active="request()->is('/invoice')">Compteurs</x-navbar-link>
+                    <x-navbar-link href="#" :active="request()->is('/controls')">Locaux</x-navbar-link>
+                    <x-navbar-link href="#" :active="request()->is('/controls')">Regions</x-navbar-link>
+                    <x-navbar-link href="#" :active="request()->is('/controls')">Administration</x-navbar-link>
                 </ul>
             </div>
         </div>
