@@ -26,16 +26,15 @@
     </style>
 </head>
 
-<body>
+<body style="background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(240,240,240,1) 50%, rgba(255,255,255,0) 100%);">
     <!-- Navigation bar -->
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div
             class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 "style="padding-left :20px;padding-right:40px;">
             <!-- Logo and brand name -->
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{ asset('images/etap-logo-sanstext.png') }}" class="h-8 blue-filter" alt="Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-                    style="letter-spacing: 0.1em;">ETAP</span>
+                <img src="{{ asset('images/etap-logo.png') }}" class="h-12 blue-filter" alt="Logo" />
             </a>
 
             <!-- User menu -->
