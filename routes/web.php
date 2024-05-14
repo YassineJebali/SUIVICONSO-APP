@@ -12,6 +12,7 @@ use App\Http\Controllers\CounterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\LocalFamilyController;
+use App\Http\Controllers\UserGroupController;
 
 
 //use App\Http\Controllers\ApiAuthController;
@@ -55,3 +56,5 @@ Route::resource('roles', RoleController::class);
 Route::resource('permissions', PermissionController::class);
 
 Route::resource('local_families', LocalFamilyController::class);
+
+Route::resource('usergroups', UserGroupController::class);
