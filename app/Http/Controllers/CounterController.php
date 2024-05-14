@@ -8,21 +8,59 @@ use App\Models\Counter; // Import the Counter class from the appropriate namespa
 
 class CounterController extends Controller
 {
+    public function index()
+    {
+        $counters = Counter::all();
+        return view('counters.index', compact('counters'));
+    }
+
+    public function create()
+    {
+        return view('counters.create');
+    }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'billing_method' => [
-                'required',
-                Rule::in(Counter::$billingmethods),
-            ],
-            // Add other fields to validate here...
+        $validatedData = $request->validate([
+            'type' => 'required|max:255',
+            'serial_number' => 'required|unique:counters',
+            'local_id' => 'required|exists:locals,id',
+            'avg_consommation' => 'required|numeric',
         ]);
     
-        Counter::create($request->all());
-        // Redirect the user to the counters index page with a success message
-        return redirect()->route('counters.index')
-                        ->with('success', 'Counter created successfully.');
+        $counter = Counter::create($validatedData);
+    
+        return response()->json(['message' => 'Counter created successfully', 'counter' => $counter], 201);
+    }
+
+    public function show(Counter $counter)
+    {
+        return view('counters.show', compact('counter'));
+    }
+
+    public function edit(Counter $counter)
+    {
+        return view('counters.edit', compact('counter'));
+    }
+
+    public function update(Request $request, Counter $counter)
+    {
+        $validatedData = $request->validate([
+            'type' => 'required|max:255',
+            'serial_number' => 'required|unique:counters,serial_number,' . $counter->id,
+            'local_id' => 'required|exists:locals,id',
+            'avg_consommation' => 'required|numeric',
+        ]);
+    
+        $counter->update($validatedData);
+    
+        return response()->json(['message' => 'Counter updated successfully', 'counter' => $counter], 200);
+    }
+
+    public function destroy(Counter $counter)
+    {
+        $counter->delete();
+        return response()->json(['message' => 'Counter deleted successfully'], 200);
     }
 }
 
