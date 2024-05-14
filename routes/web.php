@@ -7,6 +7,8 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LocalController;
+use App\Http\Controllers\CounterController;
 
 //use App\Http\Controllers\ApiAuthController;
 
@@ -39,4 +41,8 @@ Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateT
 Route::resource('invoices', InvoiceController::class);
 
 Route::get('/administration', [AdminController::class, 'index'])->name('administration');
+
+Route::resource('locals', LocalController::class);
+
+Route::resource('counters', CounterController::class);
 
