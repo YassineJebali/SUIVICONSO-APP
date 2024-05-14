@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\AdminController;
+
 //use App\Http\Controllers\ApiAuthController;
 
 /*
@@ -35,3 +37,6 @@ Route::post('/login', [LoginUserController::class, 'store'])->name('login.store'
 Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateToken']);
 
 Route::resource('invoices', InvoiceController::class);
+
+Route::get('/administration', [AdminController::class, 'index'])->name('administration');
+
