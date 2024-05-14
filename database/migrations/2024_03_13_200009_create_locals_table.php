@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
             // Corrected the table name to 'local__families'
-            $table->foreign('family_local_id')->references('id')->on('local__families')->onDelete('set null');
+            $table->foreign('family_local_id')->references('id')->on('local_families')->onDelete('set null');
         });
     }
 

@@ -1,11 +1,9 @@
 <?php
-
 namespace Database\Seeders;
-
-use App\Models\Invoice;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
-class InvoicesTableSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +12,6 @@ class InvoicesTableSeeder extends Seeder
      */
     public function run()
     {
-        Invoice::factory()->count(50)->create();
+        User::factory()->count(50)->create();
     }
 }

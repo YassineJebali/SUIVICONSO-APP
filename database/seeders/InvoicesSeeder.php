@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Models\Local;
+namespace Database\Seeders;
 
-class LocalSeeder extends Seeder
+use App\Models\Invoice;
+use Illuminate\Database\Seeder;
+
+class InvoicesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +14,6 @@ class LocalSeeder extends Seeder
      */
     public function run()
     {
-        Local::factory()
-            ->count(50)
-            ->hasPosts(1)
-            ->create();
+        Invoice::factory()->count(50)->create();
     }
 }
