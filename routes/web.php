@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LocalController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
 
 //use App\Http\Controllers\ApiAuthController;
 
@@ -47,4 +48,6 @@ Route::resource('locals', LocalController::class);
 
 Route::resource('counters', CounterController::class);
 
-Route::ressource('roles', RoleController::class);
+Route::resource('roles', RoleController::class);
+
+Route::resource('permissions', PermissionController::class);
