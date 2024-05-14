@@ -23,9 +23,12 @@ class RegionController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
-
+    
         $region = Region::create($validated);
-        return redirect()->route('regions.show', $region);
+        return response()->json([
+            'message' => 'Region created successfully',
+            'region' => $region
+        ], 201);
     }
 
     public function show(Region $region)
@@ -44,15 +47,20 @@ class RegionController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
-
+    
         $region->update($validated);
-        return redirect()->route('regions.show', $region);
+        return response()->json([
+            'message' => 'Region updated successfully',
+            'region' => $region
+        ], 200);
     }
 
     public function destroy(Region $region)
     {
         $region->delete();
-        return redirect()->route('regions.index');
+        return response()->json([
+            'message' => 'Region deleted successfully'
+        ], 200);
     }
 }
 ?>
