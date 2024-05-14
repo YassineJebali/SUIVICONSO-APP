@@ -128,13 +128,13 @@ background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(240,240,240,1) 5
                     fill="#FF6666" />
                 <path d="M255.83 365.46h512v73.14h-512zM255.74 548.2h365.71v73.38H255.74z" fill="#FF6666" />
             </svg>
-            <a href="#">
+            <a href="/invoices">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Factures</h5>
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Saisir les factures rapidement et facilement
                 grâce à un formulaire clair et ergonomique
             </p>
-            <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline"
+            <a href="/invoices" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
                 <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
