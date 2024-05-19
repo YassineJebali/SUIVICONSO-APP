@@ -1,9 +1,11 @@
 <?php
-namespace Database\Seeders;
-use Illuminate\Database\Seeder;
-use App\Models\User;
 
-class UsersSeeder extends Seeder
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Region;
+
+class RegionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +14,8 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(20)->create();
+        Region::factory()
+            ->count(50)
+            ->create();
     }
 }

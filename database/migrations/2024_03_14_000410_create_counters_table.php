@@ -18,7 +18,7 @@ return new class extends Migration
         $table->unsignedBigInteger('local_id');
         $table->decimal('avg_consommation', 8, 2);
         $table->timestamps();
-
+//TODO add addresse
         $table->foreign('local_id')->references('id')->on('locals')->onDelete('cascade');
     });
 

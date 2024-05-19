@@ -25,11 +25,13 @@ class LocalFactory extends Factory
     public function definition()
     {
         return [
-            'region_id' => Region::factory(),
-            'user_id' => User::factory(),
-            'local_family_id' => Local_Family::factory(),
-            // Add other fields here. For example:
-            // 'field_name' => $this->faker->word,
+            'name' => $this->faker->name,
+            'address' => $this->faker->address,
+            'region_id' => Region::all()->random()->id,
+            'family_local_id' => Local_Family::all()->random()->id,
+            'longitude' => $this->faker->longitude,
+            'altitude' => $this->faker->latitude, // assuming altitude is similar to latitude
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

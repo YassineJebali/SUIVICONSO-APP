@@ -23,11 +23,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'username' => $this->faker->unique()->userName,
+            'email' => $this->faker->unique()->safeEmail,
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'password' => bcrypt('password'), // password
-            'role_id' => 1, // Assuming a default role id
-            // 'local_id' => 1, // Assuming a default local id
+            'role_id' => 1, // Assuming 1 is a valid role_id
+            // 'remember_token' => Str::random(10),
         ];
     }
 }

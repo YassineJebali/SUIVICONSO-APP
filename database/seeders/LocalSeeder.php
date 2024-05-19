@@ -14,7 +14,7 @@ class LocalSeeder extends Seeder
     {
         Local::factory()
             ->count(50)
-            ->hasPosts(1)
+            //->hasPosts(1)
             ->create();
     }
 }
