@@ -67,4 +67,10 @@ class LocalController extends Controller
             return response()->json(['error' => 'Local not found'], 404);
         }
     }
+
+    public function getAddresses($query)
+    {
+        $locals = Local::where('address', 'like', "%$query%")->get();
+        return response()->json($locals->pluck('address'));
+    }
 }

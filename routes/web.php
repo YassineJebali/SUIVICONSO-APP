@@ -49,6 +49,8 @@ Route::resource('invoices', InvoiceController::class);
 Route::get('/administration', [AdminController::class, 'index'])->name('administration');
 
 Route::resource('locals', LocalController::class);
+Route::get('/get-local-address/{query}', [LocalController::class, 'getAddresses']);
+
 
 Route::resource('roles', RoleController::class);
 
