@@ -17,6 +17,9 @@ return new class extends Migration
             $table->date('date');
             $table->date('issue_date');
             $table->date('due_date');
+            $table->decimal('consumption', 8, 2);
+            $table->date('nextIndexReading')->nullable();
+            $table->date('pleasePayBefore')->nullable();
             $table->decimal('amount', 8, 2);
             $table->enum('payment_status', Invoice::$PAYMENT_STATUSES);
             $table->enum('period', Invoice::$PERIODS);

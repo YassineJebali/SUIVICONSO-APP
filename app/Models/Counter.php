@@ -26,7 +26,7 @@ class Counter extends Model
         'type',
         'serial_number',
         'local_id',
-        'avg_consommation',
+        'avg_consumption',
     ];
 
     public function local()

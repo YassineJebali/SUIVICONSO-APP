@@ -28,7 +28,7 @@ class CounterFactory extends Factory
             'type' => $this->faker->randomElement($types),
             'serial_number' => $this->faker->unique()->numerify('SN-#######'),
             'local_id' => Local::all()->random()->id,
-            'avg_consommation' => $this->faker->randomFloat(2, 0, 500),
+            'avg_consumption' => $this->faker->randomFloat(2, 0, 500),
         ];
     }
 }

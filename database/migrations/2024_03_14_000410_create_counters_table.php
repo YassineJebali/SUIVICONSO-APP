@@ -16,7 +16,7 @@ return new class extends Migration
         $table->enum('type', ['gas', 'water', 'electricity']);
         $table->string('serial_number');
         $table->unsignedBigInteger('local_id');
-        $table->decimal('avg_consommation', 8, 2);
+        $table->decimal('avg_consumption', 8, 2);
         $table->timestamps();
 //TODO add addresse
         $table->foreign('local_id')->references('id')->on('locals')->onDelete('cascade');
