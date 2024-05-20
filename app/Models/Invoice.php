@@ -30,6 +30,7 @@ class Invoice extends Model
         ];
 
     protected $fillable = [
+        'reference',
         'date',
         'issue_date',
         'due_date',

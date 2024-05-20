@@ -13,6 +13,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\LocalFamilyController;
 use App\Http\Controllers\UserGroupController;
+use App\Http\Controllers\ApiAuthController;
 
 
 //use App\Http\Controllers\ApiAuthController;
@@ -49,8 +50,6 @@ Route::get('/administration', [AdminController::class, 'index'])->name('administ
 
 Route::resource('locals', LocalController::class);
 
-Route::resource('counters', CounterController::class);
-
 Route::resource('roles', RoleController::class);
 
 Route::resource('permissions', PermissionController::class);
@@ -58,3 +57,8 @@ Route::resource('permissions', PermissionController::class);
 Route::resource('local_families', LocalFamilyController::class);
 
 Route::resource('usergroups', UserGroupController::class);
+
+Route::resource('counters', CounterController::class);
+Route::get('/get-counter-type/{serial_number}', [CounterController::class, 'getType']);
+Route::get('/get-counter-serial_number/{query}', [CounterController::class, 'getSerials']);
+

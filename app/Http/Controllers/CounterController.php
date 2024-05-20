@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\Counter; // Import the Counter class from the appropriate namespace
+use App\Models\Counter;
 
 class CounterController extends Controller
 {
@@ -27,9 +27,9 @@ class CounterController extends Controller
             'local_id' => 'required|exists:locals,id',
             'avg_consommation' => 'required|numeric',
         ]);
-    
+
         $counter = Counter::create($validatedData);
-    
+
         return response()->json(['message' => 'Counter created successfully', 'counter' => $counter], 201);
     }
 
@@ -51,9 +51,9 @@ class CounterController extends Controller
             'local_id' => 'required|exists:locals,id',
             'avg_consommation' => 'required|numeric',
         ]);
-    
+
         $counter->update($validatedData);
-    
+
         return response()->json(['message' => 'Counter updated successfully', 'counter' => $counter], 200);
     }
 
@@ -62,5 +62,14 @@ class CounterController extends Controller
         $counter->delete();
         return response()->json(['message' => 'Counter deleted successfully'], 200);
     }
+    public function getType($serial_number)
+    {
+        $counter = Counter::where('serial_number', $serial_number)->first();
+        return response()->json(['type' => $counter->type]);
+    }
+    public function getSerials($query)
+    {
+        $counters = Counter::where('serial_number', 'like', "%$query%")->get();
+        return response()->json($counters->pluck('serial_number'));
+    }
 }
-

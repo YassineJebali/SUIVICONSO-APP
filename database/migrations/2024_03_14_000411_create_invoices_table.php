@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->string('reference');
             $table->date('date');
             $table->date('issue_date');
             $table->date('due_date');
