@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Models\Counter;
+use App\Models\Local;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -74,4 +77,42 @@ class InvoiceController extends Controller
 
         return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
     }
+
+
+    public function submitForm(Request $request)
+    {
+        $validatedData = $request->validate([
+            'serial_number' => 'required',
+            'Type' => 'required',
+            'address' => 'required',
+        ]);
+    
+        $counter = Counter::where('serial_number', $validatedData['serial_number'])
+                          ->where('Type', $validatedData['Type'])
+                          ->first();
+    
+        $local = Local::where('address', $validatedData['address'])->first();
+    
+        if ($local && $counter) {
+            $invoice = new Invoice;
+            $invoice->id_local = $local->id; // Set the id_local to the ID of the found Local
+            $invoice->save();
+    
+            if ($invoice->id) {
+                // Link the invoice to the counter
+                DB::table('counter_invoice')->insert([
+                    'id_invoice' => $invoice->id,
+                    'id_counter' => $counter->id,
+                ]);
+    
+                return response()->json(['message' => 'Form submitted successfully']);
+            } else {
+                return response()->json(['message' => 'Invoice creation failed'], 500);
+            }
+        } else {
+            return response()->json(['message' => 'Local or Counter not found'], 404);
+        }
+    }
+
+
 }

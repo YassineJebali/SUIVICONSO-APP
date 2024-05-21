@@ -45,6 +45,8 @@ Route::post('/login', [LoginUserController::class, 'store'])->name('login.store'
 Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateToken']);
 
 Route::resource('invoices', InvoiceController::class);
+Route::post('/submit-form', [InvoiceController::class, 'submitForm']);
+
 
 Route::get('/administration', [AdminController::class, 'index'])->name('administration');
 
@@ -63,4 +65,5 @@ Route::resource('usergroups', UserGroupController::class);
 Route::resource('counters', CounterController::class);
 Route::get('/get-counter-type/{serial_number}', [CounterController::class, 'getType']);
 Route::get('/get-counter-serial_number/{query}', [CounterController::class, 'getSerials']);
+
 
