@@ -11,7 +11,8 @@ class LocalController extends Controller
     public function index()
     {
         $locals = Local::all();
-        return view('locals.index', ['locals' => $locals]);
+            return view('invoices.index', compact('invoices', 'locals'));
+
     }
 
     public function show($id)

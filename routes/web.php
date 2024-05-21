@@ -39,13 +39,17 @@ Route::resource('users', UserController::class);
 
 Route::get('/register', [RegisterUserController::class, 'register'])->name('register');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
-Route::get('/login', [LoginUserController::class, 'login'])->name('login');
+
 Route::post('/login', [LoginUserController::class, 'store'])->name('login.store');
+Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateToken']);
+
 
 Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateToken']);
 
 Route::resource('invoices', InvoiceController::class);
 Route::post('/submit-form', [InvoiceController::class, 'submitForm']);
+Route::get('/get-invoice-reference/{term}', [InvoiceController::class, 'getInvoiceReference']);
+
 
 
 Route::get('/administration', [AdminController::class, 'index'])->name('administration');
