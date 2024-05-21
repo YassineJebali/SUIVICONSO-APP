@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Local;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Region;
 
 class LocalController extends Controller
 {
-    public function index()
-    {
-        $locals = Local::all();
-            return view('invoices.index', compact('invoices', 'locals'));
+    
 
+    public function index(Request $request)
+    {
+        $regions = Region::all();
+        $locals = Local::when($request->region_id, function ($query, $region_id) {
+            return $query->where('region_id', $region_id);
+        })->get();
+    
+        return view('locals.index', compact('locals', 'regions'));
     }
+
+    
 
     public function show($id)
     {
