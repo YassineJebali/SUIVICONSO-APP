@@ -148,9 +148,14 @@
                         'water': 'Eau'
                     };
                     $('#Type').val(typeMapping[data.type]);
+    
+                    // Fetch and set the address associated with the serial number
+                    $.get('/get-local-address/' + serialNumber, function(addressData) {
+                        $('#address').val(addressData);
+                    });
                 });
             });
-
+    
             $('#serial_number').autocomplete({
                 source: function(request, response) {
                     $.get('/get-counter-serial_number/' + request.term, function(data) {
@@ -162,17 +167,6 @@
                     $('#serial_number').val(ui.item.value);
                 }
             });
-        });
-        $('#address').autocomplete({
-            source: function(request, response) {
-                $.get('/get-local-address/' + request.term, function(data) {
-                    response(data);
-                });
-            },
-            minLength: 2,
-            select: function(event, ui) {
-                $('#address').val(ui.item.value);
-            }
         });
     </script>
 </x-layout>

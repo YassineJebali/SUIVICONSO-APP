@@ -209,5 +209,19 @@ $invoices->orderBy('date', 'desc');
     
         return response()->json($references);
     }
+    public function getAddress($serialNumber)
+    {
+        // Fetch the counter associated with the serial number
+        $counter = Counter::where('serial_number', $serialNumber)->first();
+
+        // If the counter exists, fetch the associated local's address
+        if ($counter) {
+            $local = Local::find($counter->local_id);
+            return response()->json($local->address);
+        }
+
+        // If the counter does not exist, return an error message
+        return response()->json('No address found for this serial number', 404);
+    }
 }
 

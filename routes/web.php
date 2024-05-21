@@ -49,6 +49,7 @@ Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateT
 Route::resource('invoices', InvoiceController::class);
 Route::post('/submit-form', [InvoiceController::class, 'submitForm']);
 Route::get('/get-invoice-reference/{term}', [InvoiceController::class, 'getInvoiceReference']);
+Route::get('/get-local-address/{serialNumber}',[InvoiceController::class, 'getAddress']);
 
 
 
