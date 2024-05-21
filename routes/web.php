@@ -43,9 +43,6 @@ Route::post('/register', [RegisterUserController::class, 'store'])->name('regist
 Route::post('/login', [LoginUserController::class, 'store'])->name('login.store');
 Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateToken']);
 
-
-Route::post('/login', [App\Http\Controllers\ApiAuthController::class, 'generateToken']);
-
 Route::resource('invoices', InvoiceController::class);
 Route::post('/submit-form', [InvoiceController::class, 'submitForm']);
 Route::get('/get-invoice-reference/{term}', [InvoiceController::class, 'getInvoiceReference']);
