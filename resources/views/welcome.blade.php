@@ -28,7 +28,10 @@
 
 <body
     style="background: rgb(255,255,255);
-background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(240,240,240,1) 50%, rgba(255,255,255,0) 100%);">
+background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(240,240,240,1) 50%, rgba(255,255,255,0) 100%) background-color: #f9f9f9;
+opacity: 0.8;
+background-image: radial-gradient(#a7a7a8 0.5px, #f9f9f9 0.5px);
+background-size: 10px 10px;;">
     <!-- Navigation bar -->
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div

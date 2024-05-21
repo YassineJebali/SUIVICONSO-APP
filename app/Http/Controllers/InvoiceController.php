@@ -44,6 +44,8 @@ class InvoiceController extends Controller
             $invoices->where('local_id', $local_id);
         }
 
+$invoices->orderBy('date', 'desc');
+
         // Fetch the invoices and locals
         $invoices = $invoices->get();
         $locals = Local::all();

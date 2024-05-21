@@ -56,6 +56,7 @@
                             <option value="{{ $local->id }}">{{ $local->address }}</option>
                         @endforeach
                     </select>
+                    
                 </div>
                 <div>
                     <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded">Filtrer</button>
@@ -92,7 +93,10 @@
                     class="block p-6 pb-2 pt-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700">
                     <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Facture référence:
                         {{ $invoice->reference }}</h5>
+                        <div class="flex justify-between">
                     <p class="font-normal text-gray-700 dark:text-gray-400">Local : {{ $invoice->local->address }}</p>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">Date : {{ $invoice->date }}</p>
+                </div>
                 </a>
             @endforeach
         </div>
