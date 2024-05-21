@@ -10,15 +10,24 @@ use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
+    /**
+     * Display a listing of the invoices.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index(Request $request)
     {
+        // Get the input parameters from the request
         $reference = $request->input('reference');
         $from_date = $request->input('from_date');
         $to_date = $request->input('to_date');
         $local_id = $request->input('local');
 
+        // Start building the query for fetching invoices
         $invoices = Invoice::query();
 
+        // Apply filters based on input parameters
         if ($reference) {
             $invoices->where('reference', 'like', '%' . $reference . '%');
         }
@@ -35,19 +44,33 @@ class InvoiceController extends Controller
             $invoices->where('local_id', $local_id);
         }
 
+        // Fetch the invoices and locals
         $invoices = $invoices->get();
         $locals = Local::all();
 
+        // Return the view with the invoices and locals
         return view('invoices.index', compact('invoices', 'locals'));
     }
 
+    /**
+     * Show the form for creating a new invoice.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create()
     {
         return view('invoices.create');
     }
 
+    /**
+     * Store a newly created invoice in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
+        // Validate the request data
         $validatedData = $request->validate([
             'date' => 'required|date',
             'issue_date' => 'required|date',
@@ -58,24 +81,45 @@ class InvoiceController extends Controller
             'local_id' => 'required|integer',
         ]);
 
+        // Create a new invoice with the validated data
         $invoice = Invoice::create($validatedData);
 
+        // Return a JSON response with the success message and the created invoice
         return response()->json([
             'message' => 'Invoice created successfully.',
             'invoice' => $invoice,
         ]);
     }
 
+    /**
+     * Show the specified invoice.
+     *
+     * @param  \App\Models\Invoice  $invoice
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show(Invoice $invoice)
     {
         return view('invoices.show', compact('invoice'));
     }
 
+    /**
+     * Show the form for editing the specified invoice.
+     *
+     * @param  \App\Models\Invoice  $invoice
+     * @return \Illuminate\Contracts\View\View
+     */
     public function edit(Invoice $invoice)
     {
         return view('invoices.edit', compact('invoice'));
     }
 
+    /**
+     * Update the specified invoice in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Invoice  $invoice
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request, Invoice $invoice)
     {
         $validatedData = $request->validate([
@@ -96,6 +140,12 @@ class InvoiceController extends Controller
         ]);
     }
 
+    /**
+     * Remove the specified invoice from storage.
+     *
+     * @param  \App\Models\Invoice  $invoice
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Invoice $invoice)
     {
         $invoice->delete();
@@ -103,7 +153,12 @@ class InvoiceController extends Controller
         return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
     }
 
-
+    /**
+     * Submit the form data and create a new invoice.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function submitForm(Request $request)
     {
         $validatedData = $request->validate([
@@ -139,6 +194,12 @@ class InvoiceController extends Controller
         }
     }
 
+    /**
+     * Get the invoice references that match the given term.
+     *
+     * @param  string  $term
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getInvoiceReference($term)
     {
         $references = Invoice::where('reference', 'like', '%' . $term . '%')
@@ -147,3 +208,4 @@ class InvoiceController extends Controller
         return response()->json($references);
     }
 }
+
