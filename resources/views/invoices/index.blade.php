@@ -51,7 +51,7 @@
                 <div>
                     <label for="local">Local</label>
                     <select id="local" name="local" class="form-select">
-                        <option value="">Toute les factures</option>
+                        <option value="">Tout les locaux</option>
                         @foreach ($locals as $local)
                             <option value="{{ $local->id }}">{{ $local->address }}</option>
                         @endforeach
@@ -80,7 +80,7 @@
                             placeholder="Tapez la reference ici" required />
                         <datalist id="invoice-references"></datalist>
                         <button type="submit"
-                            class="text-white absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                            class="text-white absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Chercher</button>
                     </div>
                 </div>
 
