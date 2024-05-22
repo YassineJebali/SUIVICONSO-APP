@@ -23,6 +23,7 @@ class InvoiceController extends Controller
         $from_date = $request->input('from_date');
         $to_date = $request->input('to_date');
         $local_id = $request->input('local');
+        $payment_status = $request->input('payment_status');
 
         // Start building the query for fetching invoices
         $invoices = Invoice::query();
@@ -42,6 +43,9 @@ class InvoiceController extends Controller
 
         if ($local_id) {
             $invoices->where('local_id', $local_id);
+        }
+        if ($payment_status) {
+            $invoices->where('payment_status', $payment_status);
         }
 
 $invoices->orderBy('date', 'desc');
