@@ -62,15 +62,15 @@
             <div class="mb-5 flex justify-between items-center space-x-4 p-4 bg-white border border-gray-200 rounded-lg">
                 <div class="flex space-x-3 "><!-- Filter & date pickers left -->
                     <div class="border border-gray-200 p-2 rounded">
-                        <label for="from_date">Depuis</label>
+                        <label for="from_date">Depuis:</label>
                         <input type="date" id="from_date" name="from_date" class="form-input ">
                     </div>
                     <div class="border border-gray-200 p-2 rounded">
-                        <label for="to_date">Jusqu'a</label>
+                        <label for="to_date">Jusqu'a:</label>
                         <input type="date" id="to_date" name="to_date" class="form-input">
                     </div>
                     <div class="border border-gray-200 p-2 rounded">
-                        <label for="local">Local</label>
+                        <label for="local">Local:</label>
                         <select style="width:350px " id="local" name="local" class="form-select ">
                             <option value="">Tout les locaux</option>
                             @foreach ($locals as $local)
