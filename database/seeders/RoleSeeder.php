@@ -13,7 +13,7 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::factory()
-            ->count(50)
+            ->count(10)
             ->create();
     }
 }

@@ -15,7 +15,7 @@ class UserGroupSeeder extends Seeder
     public function run()
     {
         UserGroup::factory()
-            ->count(50)
+            ->count(10)
             ->create();
     }
 }

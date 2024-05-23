@@ -13,7 +13,7 @@ class LocalFamilySeeder extends Seeder
     public function run()
     {
         Local_Family::factory()
-            ->count(50)
+            ->count(8)
             ->create();
     }
 }

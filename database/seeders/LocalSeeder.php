@@ -13,7 +13,7 @@ class LocalSeeder extends Seeder
     public function run()
     {
         Local::factory()
-            ->count(50)
+            ->count(12)
             //->hasPosts(1)
             ->create();
     }
