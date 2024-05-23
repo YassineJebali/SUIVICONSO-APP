@@ -47,6 +47,8 @@ Route::resource('invoices', InvoiceController::class);
 Route::post('/submit-form', [InvoiceController::class, 'submitForm']);
 Route::get('/get-invoice-reference/{term}', [InvoiceController::class, 'getInvoiceReference']);
 Route::get('/get-local-address/{serialNumber}',[InvoiceController::class, 'getAddress']);
+Route::get('/invoices/{invoice}/download', 'InvoiceController@download')->name('invoices.download');
+
 
 
 

@@ -8,6 +8,7 @@ use App\Models\Counter;
 use App\Models\Local;
 use Illuminate\Support\Facades\DB;
 
+
 class InvoiceController extends Controller
 {
     /**
@@ -107,6 +108,7 @@ $invoices->orderBy('date', 'desc');
     {
         return view('invoices.show', compact('invoice'));
     }
+
 
     /**
      * Show the form for editing the specified invoice.
@@ -227,5 +229,6 @@ $invoices->orderBy('date', 'desc');
         // If the counter does not exist, return an error message
         return response()->json('No address found for this serial number', 404);
     }
+
 }
 
