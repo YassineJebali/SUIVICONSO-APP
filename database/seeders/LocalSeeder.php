@@ -14,8 +14,11 @@ class LocalSeeder extends Seeder
     public function run()
     {
         Local::factory()->count(10)->create()->each(function ($local) {
-            // For each local, create 3 counters
-            $local->counters()->saveMany(Counter::factory()->count(3)->make());
+            // For each local, create 3 counters with different types
+            $counterTypes = ['water', 'electricity', 'gas'];
+            foreach ($counterTypes as $type) {
+                $local->counters()->save(Counter::factory()->state(['type' => $type])->make());
+            }
         });
     }
 }
