@@ -16,6 +16,7 @@ use App\Http\Controllers\UserGroupController;
 use App\Http\Controllers\ApiAuthController;
 
 
+
 //use App\Http\Controllers\ApiAuthController;
 
 /*
@@ -66,5 +67,6 @@ Route::resource('usergroups', UserGroupController::class);
 Route::resource('counters', CounterController::class);
 Route::get('/get-counter-type/{serial_number}', [CounterController::class, 'getType']);
 Route::get('/get-counter-serial_number/{query}', [CounterController::class, 'getSerials']);
+Route::get('/counters/search', [CounterController::class, 'search']);
 
 

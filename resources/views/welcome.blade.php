@@ -174,12 +174,12 @@ background-size: 10px 10px;;">
                     </g>
                 </g>
             </svg>
-            <a href="#">
+            <a href="/counters">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Compteurs</h5>
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Gérer les compteurs intelligemment et suivre
                 les dépenses énergétiques</p>
-            <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline"
+            <a href="/counters" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
                 <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

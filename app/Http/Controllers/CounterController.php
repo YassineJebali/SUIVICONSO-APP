@@ -5,13 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Counter;
+use App\Models\Local;
 
 class CounterController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $counters = Counter::all();
-        return view('counters.index', compact('counters'));
+        $counters = Counter::query();
+    
+        if ($request->has('counter_type') && $request->get('counter_type') != '') {
+            $counters->where('type', $request->get('counter_type'));
+        }
+        if ($request->has('local') && $request->get('local') != '') {
+            $counters->where('local_id', $request->get('local'));
+        }
+        // Add this block to filter by serial_number
+        if ($request->has('serial_number') && $request->get('serial_number') != '') {
+            $counters->where('serial_number', 'like', '%' . $request->get('serial_number') . '%');
+        }
+    
+        $counters = $counters->get();
+    
+        $locals = Local::all();
+    
+        return view('counters.index', compact('counters', 'locals'));
     }
 
     public function create()
@@ -72,4 +89,12 @@ class CounterController extends Controller
         $counters = Counter::where('serial_number', 'like', "%$query%")->get();
         return response()->json($counters->pluck('serial_number'));
     }
+
+    public function search(Request $request)
+{
+    $query = $request->get('query');
+    $counters = Counter::where('serial_number', 'like', "%{$query}%")->get();
+    return response()->json($counters);
+}
+    
 }
