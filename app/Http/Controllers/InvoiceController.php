@@ -231,16 +231,17 @@ $invoices->orderBy('date', 'desc');
         return response()->json('No address found for this serial number', 404);
     }
 
-    public function download(Invoice $invoice) {
-        $counter = $invoice->counter;
+    public function download(Invoice $invoice)
+    {
+        $counter = $invoice->counters()->first();
     
-        if ($counter === null) {
-            return response()->json('No counter found for this invoice', 404);
+        if ($counter == null) {
+            return response()->json(['message' => 'No counter found for this invoice'], 404);
         }
     
-        $pdf = Pdf::loadView('pdf', ['invoice' => $invoice, 'counter' => $counter]);
-     
-        return $pdf->download();
+        $pdf = PDF::loadView('pdf', compact('invoice', 'counter'));
+    
+        return $pdf->download('invoice.pdf');
     }
 
 
