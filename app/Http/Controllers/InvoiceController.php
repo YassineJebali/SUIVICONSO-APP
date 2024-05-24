@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Counter;
 use App\Models\Local;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf as Pdf;
 
 
 class InvoiceController extends Controller
@@ -229,6 +230,19 @@ $invoices->orderBy('date', 'desc');
         // If the counter does not exist, return an error message
         return response()->json('No address found for this serial number', 404);
     }
+
+    public function download(Invoice $invoice) {
+        $counter = $invoice->counter;
+    
+        if ($counter === null) {
+            return response()->json('No counter found for this invoice', 404);
+        }
+    
+        $pdf = Pdf::loadView('pdf', ['invoice' => $invoice, 'counter' => $counter]);
+     
+        return $pdf->download();
+    }
+
 
 }
 
