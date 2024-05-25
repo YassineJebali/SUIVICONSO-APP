@@ -52,9 +52,10 @@ class CounterController extends Controller
 
     public function show($id)
     {
-        $counter = Counter::with('invoices')->find($id);
+        $counter = Counter::find($id);
+        $invoices = $counter->invoices()->orderBy('date', 'desc')->get();
     
-        return view('counters.show', ['counter' => $counter]);
+        return view('counters.show', ['counter' => $counter, 'invoices' => $invoices]);
     }
 
     public function edit(Counter $counter)

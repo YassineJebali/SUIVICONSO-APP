@@ -76,7 +76,7 @@
                         <th class="text-left p-3 px-5">Date d'ajout</th>
                         <th></th>
                     </tr>
-                    @foreach ($counter->invoices as $invoice)
+                    @foreach ($invoices as $invoice)
                     <tr class="border-b hover:bg-orange-100 bg-gray-50">
                         <td class="p-3 px-5">{{ $invoice->reference }}</td>
                         <td class="p-3 px-5">{{ $invoice->amount }}</td>
