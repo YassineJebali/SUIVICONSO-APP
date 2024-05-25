@@ -50,9 +50,11 @@ class CounterController extends Controller
         return response()->json(['message' => 'Counter created successfully', 'counter' => $counter], 201);
     }
 
-    public function show(Counter $counter)
+    public function show($id)
     {
-        return view('counters.show', compact('counter'));
+        $counter = Counter::with('invoices')->find($id);
+    
+        return view('counters.show', ['counter' => $counter]);
     }
 
     public function edit(Counter $counter)
