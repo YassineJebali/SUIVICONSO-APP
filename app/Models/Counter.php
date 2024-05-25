@@ -39,4 +39,8 @@ class Counter extends Model
         return $this->belongsToMany(Invoice::class, 'counter_invoice')
                     ->withPivot('reading_date', 'billing_method', 'notes');
     }
+    public function avgConsumption()
+{
+    return $this->invoices()->avg('consumption');
+}
 }

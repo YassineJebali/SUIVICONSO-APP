@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Counter;
 use App\Models\Local;
+use Illuminate\Support\Facades\DB;
 
 class CounterController extends Controller
 {
@@ -39,15 +40,24 @@ class CounterController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'type' => 'required|max:255',
+            'local_name' => 'required|exists:locals,name',
+            'type' => 'required|in:gas,water,electricity',
             'serial_number' => 'required|unique:counters',
-            'local_id' => 'required|exists:locals,id',
-            'avg_consommation' => 'required|numeric',
         ]);
-
-        $counter = Counter::create($validatedData);
-
-        return response()->json(['message' => 'Counter created successfully', 'counter' => $counter], 201);
+    
+        $local = Local::where('name', $validatedData['local_name'])->first();
+    
+        if (!$local) {
+            return back()->withErrors(['local_name' => 'Local not found']);
+        }
+    
+        $counter = Counter::create([
+            'local_id' => $local->id,
+            'type' => $validatedData['type'],
+            'serial_number' => $validatedData['serial_number'],
+        ]);
+    
+        return redirect('/counters')->with('success', 'Counter created successfully');
     }
 
     public function show($id)
@@ -99,5 +109,15 @@ class CounterController extends Controller
     $counters = Counter::where('serial_number', 'like', "%{$query}%")->get();
     return response()->json($counters);
 }
-    
+    public function getLocalNames(Request $request)
+    {
+        $term = $request->input('term');
+
+        $results = DB::table('locals') // replace 'locals' with your actual table name
+            ->where('name', 'LIKE', '%'.$term.'%')
+            ->pluck('name');
+
+        return response()->json($results);
+    }
+
 }

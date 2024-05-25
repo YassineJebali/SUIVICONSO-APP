@@ -68,5 +68,8 @@ Route::resource('counters', CounterController::class);
 Route::get('/get-counter-type/{serial_number}', [CounterController::class, 'getType']);
 Route::get('/get-counter-serial_number/{query}', [CounterController::class, 'getSerials']);
 Route::get('/counters/search', [CounterController::class, 'search']);
+Route::get('/get-local-names/{term}', [CounterController::class, 'getLocalNames']);
+Route::post('/add-counters', [App\Http\Controllers\CounterController::class, 'store']);
+
 
 
