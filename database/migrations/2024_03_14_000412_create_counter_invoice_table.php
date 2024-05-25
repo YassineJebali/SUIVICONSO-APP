@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('counter_id')->constrained();
             $table->foreignId('invoice_id')->constrained();
-            $table->date('reading_date');
+            $table->date('reading_date')->nullable();
             $table->enum('billing_method', Counter::$billingmethods);
             $table->text('notes')->nullable();
             $table->timestamps();

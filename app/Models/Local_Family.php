@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Local_Family extends Model
 {
     use HasFactory;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'local_families';
+
 
     /**
      * The attributes that are mass assignable.

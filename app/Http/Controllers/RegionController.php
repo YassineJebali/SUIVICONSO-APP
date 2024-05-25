@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class RegionController extends Controller
 {
@@ -19,13 +21,18 @@ class RegionController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
 
-        $region = Region::create($validated);
-        return redirect()->route('regions.show', $region);
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 400);
+        }
+
+        $region = Region::create($request->all());
+
+        return response()->json(['message' => 'Region created successfully', 'region' => $region], 201);
     }
 
     public function show(Region $region)
@@ -44,15 +51,20 @@ class RegionController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
-
+    
         $region->update($validated);
-        return redirect()->route('regions.show', $region);
+        return response()->json([
+            'message' => 'Region updated successfully',
+            'region' => $region
+        ], 200);
     }
 
     public function destroy(Region $region)
     {
         $region->delete();
-        return redirect()->route('regions.index');
+        return response()->json([
+            'message' => 'Region deleted successfully'
+        ], 200);
     }
 }
 ?>

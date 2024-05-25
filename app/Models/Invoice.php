@@ -30,9 +30,13 @@ class Invoice extends Model
         ];
 
     protected $fillable = [
+        'reference',
         'date',
         'issue_date',
         'due_date',
+        'consumption',
+        'nextIndexReading',
+        'pleasePayBefore',
         'amount',
         'payment_status',
         'period',

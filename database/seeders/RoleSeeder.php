@@ -1,9 +1,9 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\Models\Role;
 
-class UsersTableSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(50)->create();
+        Role::factory()
+            ->count(10)
+            ->create();
     }
 }
