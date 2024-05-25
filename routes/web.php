@@ -70,6 +70,8 @@ Route::get('/get-counter-serial_number/{query}', [CounterController::class, 'get
 Route::get('/counters/search', [CounterController::class, 'search']);
 Route::get('/get-local-names/{term}', [CounterController::class, 'getLocalNames']);
 Route::post('/add-counters', [App\Http\Controllers\CounterController::class, 'store']);
+Route::get('/counters/{id}/edit', [App\Http\Controllers\CounterController::class, 'edit']);
+Route::put('/counters/{id}', [App\Http\Controllers\CounterController::class, 'update']);
 
 
 

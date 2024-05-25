@@ -68,23 +68,33 @@ class CounterController extends Controller
         return view('counters.show', ['counter' => $counter, 'invoices' => $invoices]);
     }
 
-    public function edit(Counter $counter)
+    public function edit($id)
     {
-        return view('counters.edit', compact('counter'));
+        $counter = Counter::findOrFail($id);
+    
+        return view('counters.edit', ['counter' => $counter]);
     }
 
-    public function update(Request $request, Counter $counter)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'type' => 'required|max:255',
-            'serial_number' => 'required|unique:counters,serial_number,' . $counter->id,
-            'local_id' => 'required|exists:locals,id',
-            'avg_consommation' => 'required|numeric',
-        ]);
-
-        $counter->update($validatedData);
-
-        return response()->json(['message' => 'Counter updated successfully', 'counter' => $counter], 200);
+        try {
+            $validatedData = $request->validate([
+                'serial_number' => 'required',
+                'local_name' => 'required',
+                'type' => 'required',
+            ]);
+    
+            $counter = Counter::findOrFail($id);
+            $counter->update($validatedData);
+    
+            // Add a success message to the session
+            session()->flash('success', 'Counter modifié avec succès');
+        } catch (\Exception $e) {
+            // Add an error message to the session
+            session()->flash('error', 'Erreur: operation échouée');
+        }
+    
+        return redirect('/counters/' . $counter->id);
     }
 
     public function destroy(Counter $counter)
