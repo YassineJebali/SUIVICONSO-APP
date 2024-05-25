@@ -25,18 +25,23 @@ class InvoiceFactory extends Factory
 
      public function definition()
      {
+         $issue_date = $this->faker->dateTimeBetween('2020-01-01', 'now')->format('Y-m-d');
+         $date = date('Y-m-d', strtotime("+1 week", strtotime($issue_date)));
+         $due_date = date('Y-m-d', strtotime("+2 months", strtotime($issue_date)));
+         $pleasePayBefore = date('Y-m-d', strtotime("+20 days", strtotime($due_date)));
+         $nextIndexReading = date('Y-m-d', strtotime("+2 months", strtotime($due_date)));
+     
          return [
-             'date' => $this->faker->date,
-             'issue_date' => $this->faker->date,
-             'due_date' => $this->faker->date,
-             'nextIndexReading' => $this->faker->date,
-             'pleasePayBefore' => $this->faker->date,
+             'date' => $date,
+             'issue_date' => $issue_date,
+             'due_date' => $due_date,
+             'nextIndexReading' => $nextIndexReading,
+             'pleasePayBefore' => $pleasePayBefore,
              'consumption' => $this->faker->randomFloat(2, 0, 500),
              'amount' => $this->faker->randomFloat(2, 0, 500),
              'payment_status' => $this->faker->randomElement(Invoice::$PAYMENT_STATUSES),
              'period' => $this->faker->randomElement(Invoice::$PERIODS),
              'reference' => $this->faker->unique()->numerify('INV#####'),
-             // other fields...
          ];
      }
 
