@@ -22,36 +22,34 @@ class InvoiceFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
-        return [
-            'reference' => $this->faker->numberBetween(100000000, 999999999),
-            'date' => $this->faker->date,
-            'issue_date' => $this->faker->date,
-            'due_date' => $this->faker->date,
-            'nextIndexReading' => $this->faker->date,
-            'pleasePayBefore' => $this->faker->date,
-            'consumption' => $this->faker->randomFloat(2, 0, 500),
-            'amount' => $this->faker->randomFloat(2, 0, 500),
-            'payment_status' => $this->faker->randomElement(Invoice::$PAYMENT_STATUSES),
-            'period' => $this->faker->randomElement(Invoice::$PERIODS),
-            'local_id' => Local::all()->random()->id,
-        ];
-    }
 
-    /**
-     * Configure the model factory.
-     *
-     * @return $this
-     */
-    public function configure()
-    {
-        return $this->afterCreating(function (Invoice $invoice) {
-            DB::table('counter_invoice')->insert([
-                'counter_id' => Counter::all()->random()->id,
-                'invoice_id' => $invoice->id,
-                'reading_date' => now(), 
-            ]);
-        });
-    }
+     public function definition()
+     {
+         return [
+             'date' => $this->faker->date,
+             'issue_date' => $this->faker->date,
+             'due_date' => $this->faker->date,
+             'nextIndexReading' => $this->faker->date,
+             'pleasePayBefore' => $this->faker->date,
+             'consumption' => $this->faker->randomFloat(2, 0, 500),
+             'amount' => $this->faker->randomFloat(2, 0, 500),
+             'payment_status' => $this->faker->randomElement(Invoice::$PAYMENT_STATUSES),
+             'period' => $this->faker->randomElement(Invoice::$PERIODS),
+             'reference' => $this->faker->unique()->numerify('INV#####'),
+             // other fields...
+         ];
+     }
+
+public function configure()
+{
+    return $this->afterCreating(function (Invoice $invoice) {
+        // $counter = $invoice->local->counters->random(); // Remove this line
+
+        // DB::table('counter_invoice')->insert([ // Remove this block
+        //     'counter_id' => $counter->id,
+        //     'invoice_id' => $invoice->id,
+        //     'reading_date' => now(), 
+        // ]);
+    });
+}
 }

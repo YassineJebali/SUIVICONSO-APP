@@ -1,8 +1,12 @@
 <?php
+
 namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\Local;
 use App\Models\Counter;
+use App\Models\Invoice;
+use Illuminate\Support\Facades\DB;
 
 class LocalSeeder extends Seeder
 {
@@ -13,11 +17,26 @@ class LocalSeeder extends Seeder
      */
     public function run()
     {
-        Local::factory()->count(10)->create()->each(function ($local) {
-            // For each local, create 3 counters with different types
-            $counterTypes = ['water', 'electricity', 'gas'];
-            foreach ($counterTypes as $type) {
-                $local->counters()->save(Counter::factory()->state(['type' => $type])->make());
+        $types = ['gas', 'water', 'electricity'];
+
+        Local::factory()->count(10)->create()->each(function ($local) use ($types) {
+            foreach ($types as $type) {
+                $counter = $local->counters()->save(
+                    Counter::factory()->state([
+                        'type' => $type,
+                        'local_id' => $local->id,
+                    ])->make()
+                );
+
+                Invoice::factory()->count(12)->state([
+                    'local_id' => $local->id,
+                ])->create()->each(function ($invoice) use ($counter) {
+                    DB::table('counter_invoice')->insert([
+                        'counter_id' => $counter->id,
+                        'invoice_id' => $invoice->id,
+                        'reading_date' => now(), 
+                    ]);
+                });
             }
         });
     }

@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class, // Then UserSeeder
             LocalFamilySeeder::class, // Add LocalFamilySeeder to the list
             LocalSeeder::class, // Add LocalSeeder to the list
-            CounterSeeder::class, // Add CounterSeeder to the list
-            InvoicesSeeder::class, // Then InvoicesTableSeeder
+            //CounterSeeder::class, // Add CounterSeeder to the list
+            //InvoicesSeeder::class, // Then InvoicesTableSeeder
             // Other seeders...
         ]);
     }
