@@ -49,6 +49,8 @@ Route::post('/submit-form', [InvoiceController::class, 'submitForm']);
 Route::get('/get-invoice-reference/{term}', [InvoiceController::class, 'getInvoiceReference']);
 Route::get('/get-local-address/{serialNumber}',[InvoiceController::class, 'getAddress']);
 Route::get('/invoices/{invoice}/download', [InvoiceController::class, 'download'])->name('invoices.download');
+Route::get('/getCounters/{local}', [InvoiceController::class, 'getCounters']);
+
 
 Route::get('/administration', [AdminController::class, 'index'])->name('administration');
 
