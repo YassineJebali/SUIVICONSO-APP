@@ -97,10 +97,12 @@ class CounterController extends Controller
         return redirect('/counters/' . $counter->id);
     }
 
-    public function destroy(Counter $counter)
+    public function destroy($id)
     {
+        $counter = Counter::find($id);
         $counter->delete();
-        return response()->json(['message' => 'Counter deleted successfully'], 200);
+    
+        return redirect()->route('counters.index')->with('success', 'Counter deleted successfully');
     }
     public function getType($serial_number)
     {

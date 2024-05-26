@@ -70,13 +70,21 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-4">
                     Détails du Compteur
                 </h1>
-                <div>
+                <div class="flex justify-center space-x-1">
                     <a href="/counters/{{ $counter->id }}/edit">
                         <button type="submit"
                             class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Modifier le compteur
+                            Modifier
                         </button>
                     </a>
+                    <form action="{{ route('counters.destroy', $counter->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class=" text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Supprimer
+                        </button>
+                    </form>
                 </div>
             </div>
 
