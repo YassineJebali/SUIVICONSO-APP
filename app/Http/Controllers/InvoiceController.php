@@ -169,11 +169,12 @@ $invoices->orderBy('date', 'desc');
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Invoice $invoice)
+    public function destroy($id)
     {
+        $invoice = Invoice::find($id);
         $invoice->delete();
-
-        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
+    
+        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully');
     }
 
     /**
