@@ -102,13 +102,13 @@ background-size: 10px 10px;;">
                 <path fill="#009993"
                     d="M359.168 768H160a32 32 0 01-32-32V192H64a32 32 0 010-64h896a32 32 0 110 64h-64v544a32 32 0 01-32 32H665.216l110.848 192h-73.856L591.36 768H433.024L322.176 960H248.32l110.848-192zM832 192H192v512h640V192zM342.656 534.656a32 32 0 11-45.312-45.312L444.992 341.76l125.44 94.08L679.04 300.032a32 32 0 1149.92 39.936L581.632 524.224 451.008 426.24 342.656 534.592z" />
             </svg>
-            <a href="#">
+            <a href="/dashboard">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Tableau de Bord
                 </h5>
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Accéder au tableau de bord pour visualiser la
                 consommation d'électricité, d'eau et de gaz</p>
-            <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline"
+            <a href="/dashboard" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
                 <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -281,11 +281,11 @@ background-size: 10px 10px;;">
                 </g>
 
             </svg>
-            <a href="#">
+            <a href="/regions">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Regions</h5>
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Consulter les regions</p>
-            <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline"
+            <a href="/regions" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
                 <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
