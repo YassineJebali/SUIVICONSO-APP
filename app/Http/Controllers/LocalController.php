@@ -6,6 +6,7 @@ use App\Models\Local;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Region;
+use App\Models\Counter;
 
 class LocalController extends Controller
 {
@@ -21,16 +22,12 @@ class LocalController extends Controller
         return view('locals.index', compact('locals', 'regions'));
     }
 
-    
-
     public function show($id)
     {
         $local = Local::find($id);
-        if ($local) {
-            return view('locals.show', ['local' => $local]);
-        } else {
-            return response()->json(['error' => 'Local not found'], 404);
-        }
+        $counters = $local->counters;
+    
+        return view('locals.show', ['local' => $local, 'counters' => $counters]);
     }
 
     public function store(Request $request)

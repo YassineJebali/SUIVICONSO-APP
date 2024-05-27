@@ -79,8 +79,8 @@
                     <x-navbar-link href="/dashboard" :active="request()->is('/dashboard')">Tableau de Bord</x-navbar-link>
                     <x-navbar-link href="/invoices" :active="request()->is('/invoices')">Factures</x-navbar-link>
                     <x-navbar-link href="/counters" :active="request()->is('/counters')">Compteurs</x-navbar-link>
-                    <x-navbar-link href="/Locals" :active="request()->is('/controls')">Locaux</x-navbar-link>
-                    <x-navbar-link href="/regions" :active="request()->is('/controls')">Regions</x-navbar-link>
+                    <x-navbar-link href="/locals" :active="request()->is('/locals')">Locaux</x-navbar-link>
+                    <x-navbar-link href="/regions" :active="request()->is('/regions')">Regions</x-navbar-link>
                     <x-navbar-link href="/administration" :active="request()->is('/administration')">Administration</x-navbar-link>
                 </ul>
             </div>
