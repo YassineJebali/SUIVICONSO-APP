@@ -64,10 +64,19 @@ class CounterController extends Controller
     {
         $counter = Counter::find($id);
         $invoices = $counter->invoices()->orderBy('date', 'desc')->get();
+        
     
-        return view('counters.show', ['counter' => $counter, 'invoices' => $invoices]);
+        $invoiceData = $invoices->map(function($invoice) {
+            $issue_date = \Carbon\Carbon::parse($invoice->issue_date);
+            return [
+                'year' => $issue_date->format('Y'),
+                'month' => $issue_date->format('M'),
+                'consumption' => $invoice->consumption
+            ];
+        });
+    
+        return view('counters.show', ['counter' => $counter, 'invoices' => $invoices, 'invoiceData' => $invoiceData]);
     }
-
     public function edit($id)
     {
         $counter = Counter::findOrFail($id);
