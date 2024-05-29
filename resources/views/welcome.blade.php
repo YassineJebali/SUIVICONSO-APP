@@ -308,7 +308,7 @@ background-size: 10px 10px;;">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Administration
                 </h5>
             </a>
-            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Gestion des utilisateurs et historique</p>
+            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Gestion des utilisateurs</p>
             <a href="/administration" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
