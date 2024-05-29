@@ -87,27 +87,20 @@
 <div class="space-y-4 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
         style="margin-right: 9.375rem; margin-left: 9.375rem; margin-top:0.5rem; margin-bottom:2rem;">
     <div>
-        <div class="mb-5 flex justify-between">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-4">
-                    Détails du Compteur
-                </h1>
-                <div class="flex justify-center space-x-1">
-                    <a href="/counters/{{ $counter->id }}/edit">
-                        <button type="submit"
-                            class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Modifier
-                        </button>
-                    </a>
-                    <form action="{{ route('counters.destroy', $counter->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"
-                            class=" text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Supprimer
-                        </button>
-                    </form>
-                </div>
-            </div>
+        <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 mb-8">
+            <ul class="flex flex-wrap -mb-px">
+                <li class="me-2">
+                    <a href="#counter-details" class="tab-link inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Détails du compteur</a>
+                </li>
+                <li class="me-2">
+                    <a href="#counter-statistics" class="tab-link inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page">Statistiques du compteur</a>
+                </li>
+                <li class="me-2">
+                    <a href="#invoice-list" class="tab-link inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Liste des factures</a>
+                </li>
+            </ul>
+        </div>
+        <div  id="counter-details" class="tab-content">
 
             <div class="grid md:grid-cols-2 md:gap-6 mb-4">
                 <div class="relative z-0 w-full mb-5 group" style="margin-bottom: 0px;">
@@ -136,7 +129,25 @@
                         @endswitch
                     </h2>
                 </div>
+                    <div class="flex justify-end space-x-1 pt-4">
+                        <a href="/counters/{{ $counter->id }}/edit">
+                            <button type="submit"
+                                class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Modifier
+                            </button>
+                        </a>
+                        <form action="{{ route('counters.destroy', $counter->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class=" text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
             </div>
+        </div>
+        <div id="counter-statistics" class="tab-content">
             <div>
                 <select id="yearFilter" class="block  p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">Toutes les années</option>
@@ -148,13 +159,10 @@
             <div class="flex justify-center mb-8">
                 <canvas id="invoiceChart"></canvas>
             </div>
-            <h2 class="text-lg font-bold leading-tight tracking-tight text-gray-900 md:text-xl dark:text-white mb-4">
-                Liste des factures
-            </h2>
-            
+        </div>
 
         <!-- Invoice list -->
-        <div class="flex justify-center">
+        <div class="flex justify-center tab-content" id="invoice-list">
             <table class="w-full text-md bg-gray-100 shadow border-gray-300 rounded mb-4">
                 <tbody>
                     <tr class="border-b">
@@ -254,5 +262,29 @@
                 invoiceChart.destroy();
                 invoiceChart = createChart(filteredData, isYearSelected);
             });
+        </script>
+        <script>
+// Add click event listeners to all tab links
+document.querySelectorAll('.tab-link').forEach(function(tabLink) {
+    tabLink.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Remove the 'active' class from all tab links
+        document.querySelectorAll('.tab-link').forEach(function(tabLink) {
+            tabLink.classList.remove('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
+        });
+
+        // Add the 'active' class to the clicked tab link
+        this.classList.add('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
+
+        // Hide all tab content divs
+        document.querySelectorAll('.tab-content').forEach(function(tabContent) {
+            tabContent.style.display = 'none';
+        });
+
+        // Show the clicked tab content div
+        document.querySelector(this.getAttribute('href')).style.display = 'block';
+    });
+});
         </script>
 </x-layout>
