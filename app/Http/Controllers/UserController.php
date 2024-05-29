@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Local;
+
 class UserController extends Controller
 {
     /**
@@ -15,8 +17,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-
-        return view('users.index', compact('users'));
+        $locals = Local::all(); // Assuming you have a Local model
+    
+        return view('users.index', compact('users', 'locals'));
     }
 
     /**

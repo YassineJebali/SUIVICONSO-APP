@@ -81,7 +81,7 @@
                     <x-navbar-link href="/counters" :active="request()->is('/counters')">Compteurs</x-navbar-link>
                     <x-navbar-link href="/locals" :active="request()->is('/locals')">Locaux</x-navbar-link>
                     <x-navbar-link href="/regions" :active="request()->is('/regions')">Regions</x-navbar-link>
-                    <x-navbar-link href="/administration" :active="request()->is('/administration')">Administration</x-navbar-link>
+                    <x-navbar-link href="/users" :active="request()->is('/users')">Administration</x-navbar-link>
                 </ul>
             </div>
         </div>
