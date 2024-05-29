@@ -145,7 +145,7 @@
                     <tr class="border-b">
                         <th class="text-left p-3 px-5">Type</th>
                         <th class="text-left p-3 px-5">Total</th>
-                        <th class="text-left p-3 px-5">Consommation</th>
+                        <th class="text-left p-3 px-5">Quantité consommée</th>
                         <th class="text-left p-3 px-5">Etat</th>
                         <th class="text-left p-3 px-5">Date d'ajout</th>
                         <th></th>
@@ -166,7 +166,7 @@
                                     <span class="inline-flex rounded-full bg-gray-100 p-1 space-x-1 pl-2 pr-2 text-gray-500">Inconnu</span>
                             @endswitch
                         </td>
-                        <td class="p-3 px-5">{{ $invoice->amount }}</td>
+                        <td class="p-3 px-5">{{ $invoice->amount }} DT</td>
                         <td class="p-3 px-5">{{ $invoice->consumption }}</td>
                         <td class="p-3 px-5">
                             @switch($invoice->payment_status)

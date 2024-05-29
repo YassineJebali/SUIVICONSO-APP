@@ -160,7 +160,7 @@
                     <tr class="border-b">
                         <th class="text-left p-3 px-5">Reference</th>
                         <th class="text-left p-3 px-5">Total</th>
-                        <th class="text-left p-3 px-5">Consommation</th>
+                        <th class="text-left p-3 px-5">Q. consommée</th>
                         <th class="text-left p-3 px-5">Etat</th>
                         <th class="text-left p-3 px-5">Date d'ajout</th>
                         <th></th>
@@ -168,7 +168,7 @@
                     @foreach ($invoices as $invoice)
                     <tr class="border-b hover:bg-orange-100 bg-gray-50">
                         <td class="p-3 px-5">{{ $invoice->reference }}</td>
-                        <td class="p-3 px-5">{{ $invoice->amount }}</td>
+                        <td class="p-3 px-5">{{ $invoice->amount }} DT</td>
                         <td class="p-3 px-5">{{ $invoice->consumption }}</td>
                         <td class="p-3 px-5">
                             @switch($invoice->payment_status)
@@ -224,7 +224,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Quantité de Consommation',
+                            label: 'Quantité consommée',
                             data: data.map(function(invoice) { return invoice.consumption; }),
                             tension: 0.1,
                             borderColor: getColor(counterType), // Set the color of the line
