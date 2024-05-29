@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('password');
             $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('local_id')->nullable();
+            $table->foreign('local_id')->references('id')->on('locals')->onDelete('set null');  
             $table->rememberToken();
             $table->timestamps();
         });
@@ -33,6 +35,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['local_id']);
+            $table->dropColumn('local_id');
+        });
     }
 }

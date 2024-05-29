@@ -19,12 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('family_local_id')->nullable();
             $table->decimal('longitude', 10, 7);
             $table->decimal('altitude', 10, 7);
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
-
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
             $table->foreign('family_local_id')->references('id')->on('local_families')->onDelete('set null');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

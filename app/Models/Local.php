@@ -31,9 +31,9 @@ class Local extends Model
         return $this->belongsTo('App\Models\Region');
     }
 
-    public function user()
+    public function users()
     {
-        return $this->hasOne('App\Models\User');
+        return $this->hasMany('App\Models\User');
     }
 
     /**
