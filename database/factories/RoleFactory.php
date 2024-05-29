@@ -23,7 +23,7 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            'nom' => $this->faker->word,
+            'nom' => $this->faker->randomElement(['inputuser', 'localmanager', 'admin']),
             'description' => $this->faker->sentence,
             'permission_id' => Permission::factory(),
         ];

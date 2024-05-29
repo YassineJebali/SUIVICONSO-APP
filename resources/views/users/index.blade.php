@@ -91,7 +91,7 @@
                     <label for="role" class="text-sm font-medium text-gray-900 sr-only dark:text-white">Role</label>
                     <select id="role" name="role" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">Tout les roles</option>
-                        <option value="inputagent">Agent de Saisie</option>
+                        <option value="inputuser">Agent de Saisie</option>
                         <option value="localmanager">Responsable local</option>
                         <option value="admin">Administrateur</option>
                     </select>
@@ -138,13 +138,13 @@
                             <td class="p-3 px-5">
                                 @switch($user->role->nom)
                                     @case('admin')
-                                        <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Administrateur</span>
+                                        <span class="bg-cyan-200 text-cyan-600 py-1 px-3 rounded-full text-xs">Administrateur</span>
                                         @break
-                                    @case('inputagent')
-                                        <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Agent de saisie</span>
+                                    @case('inputuser')
+                                        <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Agent de saisie</span>
                                         @break
                                     @case('localmanager')
-                                        <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Responsable local</span>
+                                        <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Responsable local</span>
                                         @break
                                     @default
                                         <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">Inconnu</span>
