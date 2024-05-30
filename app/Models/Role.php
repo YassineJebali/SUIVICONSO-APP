@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Permission;
+use InvalidArgumentException;
 
 class Role extends Model
 {
@@ -21,6 +22,16 @@ class Role extends Model
         'description',
         'permission_id', // Assuming 'permission_id' is the foreign key for 'PERMISSION'
     ];
+    public function setNomAttribute($value)
+    {
+        $allowed = ['inputuser', 'localmanager', 'admin'];
+
+        if (! in_array($value, $allowed)) {
+            throw new InvalidArgumentException("Invalid role name");
+        }
+
+        $this->attributes['nom'] = $value;
+    }
 
     /**
      * Get the users associated with the role.

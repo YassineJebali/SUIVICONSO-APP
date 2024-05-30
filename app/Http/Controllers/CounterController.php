@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Counter;
 use App\Models\Local;
+use Illuminate\Support\Facades\DB;
 
 class CounterController extends Controller
 {
@@ -39,48 +40,78 @@ class CounterController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'type' => 'required|max:255',
+            'local_name' => 'required|exists:locals,name',
+            'type' => 'required|in:gas,water,electricity',
             'serial_number' => 'required|unique:counters',
-            'local_id' => 'required|exists:locals,id',
-            'avg_consommation' => 'required|numeric',
         ]);
-
-        $counter = Counter::create($validatedData);
-
-        return response()->json(['message' => 'Counter created successfully', 'counter' => $counter], 201);
+    
+        $local = Local::where('name', $validatedData['local_name'])->first();
+    
+        if (!$local) {
+            return back()->withErrors(['local_name' => 'Local not found']);
+        }
+    
+        $counter = Counter::create([
+            'local_id' => $local->id,
+            'type' => $validatedData['type'],
+            'serial_number' => $validatedData['serial_number'],
+        ]);
+    
+        return redirect('/counters')->with('success', 'Counter created successfully');
     }
 
     public function show($id)
     {
         $counter = Counter::find($id);
         $invoices = $counter->invoices()->orderBy('date', 'desc')->get();
+        
     
-        return view('counters.show', ['counter' => $counter, 'invoices' => $invoices]);
+        $invoiceData = $invoices->map(function($invoice) {
+            $issue_date = \Carbon\Carbon::parse($invoice->issue_date);
+            return [
+                'year' => $issue_date->format('Y'),
+                'month' => $issue_date->format('M'),
+                'consumption' => $invoice->consumption
+            ];
+        });
+    
+        return view('counters.show', ['counter' => $counter, 'invoices' => $invoices, 'invoiceData' => $invoiceData]);
+    }
+    public function edit($id)
+    {
+        $counter = Counter::findOrFail($id);
+    
+        return view('counters.edit', ['counter' => $counter]);
     }
 
-    public function edit(Counter $counter)
+    public function update(Request $request, $id)
     {
-        return view('counters.edit', compact('counter'));
+        try {
+            $validatedData = $request->validate([
+                'serial_number' => 'required',
+                'local_name' => 'required',
+                'type' => 'required',
+            ]);
+    
+            $counter = Counter::findOrFail($id);
+            $counter->update($validatedData);
+    
+            // Add a success message to the session
+            session()->flash('success', 'Counter modifié avec succès');
+        } catch (\Exception $e) {
+            // Add an error message to the session
+            session()->flash('error', 'Erreur: operation échouée');
+        }
+    
+        return redirect('/counters/' . $counter->id);
     }
 
-    public function update(Request $request, Counter $counter)
+    public function destroy($id)
     {
-        $validatedData = $request->validate([
-            'type' => 'required|max:255',
-            'serial_number' => 'required|unique:counters,serial_number,' . $counter->id,
-            'local_id' => 'required|exists:locals,id',
-            'avg_consommation' => 'required|numeric',
-        ]);
-
-        $counter->update($validatedData);
-
-        return response()->json(['message' => 'Counter updated successfully', 'counter' => $counter], 200);
-    }
-
-    public function destroy(Counter $counter)
-    {
+        $counter = Counter::find($id);
         $counter->delete();
-        return response()->json(['message' => 'Counter deleted successfully'], 200);
+    
+        return redirect()->route('counters.index')->with('success', 'Counter deleted successfully');
     }
     public function getType($serial_number)
     {
@@ -99,5 +130,15 @@ class CounterController extends Controller
     $counters = Counter::where('serial_number', 'like', "%{$query}%")->get();
     return response()->json($counters);
 }
-    
+    public function getLocalNames(Request $request)
+    {
+        $term = $request->input('term');
+
+        $results = DB::table('locals') // replace 'locals' with your actual table name
+            ->where('name', 'LIKE', '%'.$term.'%')
+            ->pluck('name');
+
+        return response()->json($results);
+    }
+
 }

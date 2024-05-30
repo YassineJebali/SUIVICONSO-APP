@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Local;
 
 
 class RegionController extends Controller
@@ -35,9 +36,12 @@ class RegionController extends Controller
         return response()->json(['message' => 'Region created successfully', 'region' => $region], 201);
     }
 
-    public function show(Region $region)
+    public function show($id)
     {
-        return view('regions.show', compact('region'));
+        $region = Region::findOrFail($id);
+        $locals = $region->locals;
+
+        return view('regions.show', ['region' => $region, 'locals' => $locals]);
     }
 
     public function edit(Region $region)

@@ -49,6 +49,8 @@ Route::post('/submit-form', [InvoiceController::class, 'submitForm']);
 Route::get('/get-invoice-reference/{term}', [InvoiceController::class, 'getInvoiceReference']);
 Route::get('/get-local-address/{serialNumber}',[InvoiceController::class, 'getAddress']);
 Route::get('/invoices/{invoice}/download', [InvoiceController::class, 'download'])->name('invoices.download');
+Route::get('/getCounters/{local}', [InvoiceController::class, 'getCounters']);
+
 
 Route::get('/administration', [AdminController::class, 'index'])->name('administration');
 
@@ -68,5 +70,10 @@ Route::resource('counters', CounterController::class);
 Route::get('/get-counter-type/{serial_number}', [CounterController::class, 'getType']);
 Route::get('/get-counter-serial_number/{query}', [CounterController::class, 'getSerials']);
 Route::get('/counters/search', [CounterController::class, 'search']);
+Route::get('/get-local-names/{term}', [CounterController::class, 'getLocalNames']);
+Route::post('/add-counters', [App\Http\Controllers\CounterController::class, 'store']);
+Route::get('/counters/{id}/edit', [App\Http\Controllers\CounterController::class, 'edit']);
+Route::put('/counters/{id}', [App\Http\Controllers\CounterController::class, 'update']);
+
 
 

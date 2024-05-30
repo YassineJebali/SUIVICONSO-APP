@@ -119,7 +119,8 @@ $invoices->orderBy('date', 'desc');
      */
     public function edit(Invoice $invoice)
     {
-        return view('invoices.edit', compact('invoice'));
+        $locals = Local::all();
+        return view('invoices.edit', compact('invoice', 'locals'));
     }
 
     /**
@@ -131,35 +132,49 @@ $invoices->orderBy('date', 'desc');
      */
     public function update(Request $request, Invoice $invoice)
     {
-        $validatedData = $request->validate([
-            'date' => 'required|date',
-            'issue_date' => 'required|date',
-            'due_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'payment_status' => 'required|in:' . implode(',', Invoice::$PAYMENT_STATUSES),
-            'period' => 'required|in:' . implode(',', Invoice::$PERIODS),
-            'local_id' => 'required|integer',
-        ]);
-
-        $invoice->update($validatedData);
-
-        return response()->json([
-            'message' => 'Invoice updated successfully.',
-            'invoice' => $invoice,
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'reference' => 'required',
+                'issue_date' => 'required|date',
+                'due_date' => 'required|date',
+                'pleasePayBefore' => 'required|date',
+                'nextIndexReading' => 'required|date',
+                'local_id' => 'required|exists:locals,id',
+                'amount' => 'required|numeric',
+                'consumption' => 'required|numeric',
+            ]);
+    
+            $counter_id = $request->validate([
+                'counter_id' => 'required|exists:counters,id',
+            ]);
+    
+            $invoice->update($validatedData);
+    
+            // Update the counter relationship
+            $invoice->counters()->sync([$counter_id['counter_id']]);
+    
+            session()->flash('success', 'Invoice updated successfully.');
+    
+            // Redirect to the show view
+            return redirect()->route('invoices.show', ['invoice' => $invoice->id]);
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to update invoice.');
+    
+            return back()->withInput();
+        }
     }
-
     /**
      * Remove the specified invoice from storage.
      *
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Invoice $invoice)
+    public function destroy($id)
     {
+        $invoice = Invoice::find($id);
         $invoice->delete();
-
-        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
+    
+        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully');
     }
 
     /**
@@ -243,6 +258,12 @@ $invoices->orderBy('date', 'desc');
     
         return $pdf->download('invoice.pdf');
     }
+    public function getCounters(Local $local)
+    {
+        $counters = $local->counters->pluck('serial_number', 'id');
+        return response()->json($counters);
+    }
+    
 
 
 }

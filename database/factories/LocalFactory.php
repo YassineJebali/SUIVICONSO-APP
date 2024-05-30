@@ -31,7 +31,6 @@ class LocalFactory extends Factory
             'family_local_id' => Local_Family::all()->random()->id,
             'longitude' => $this->faker->longitude,
             'altitude' => $this->faker->latitude, // assuming altitude is similar to latitude
-            'user_id' => User::all()->random()->id,
         ];
     }
 }

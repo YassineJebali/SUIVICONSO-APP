@@ -102,13 +102,13 @@ background-size: 10px 10px;;">
                 <path fill="#009993"
                     d="M359.168 768H160a32 32 0 01-32-32V192H64a32 32 0 010-64h896a32 32 0 110 64h-64v544a32 32 0 01-32 32H665.216l110.848 192h-73.856L591.36 768H433.024L322.176 960H248.32l110.848-192zM832 192H192v512h640V192zM342.656 534.656a32 32 0 11-45.312-45.312L444.992 341.76l125.44 94.08L679.04 300.032a32 32 0 1149.92 39.936L581.632 524.224 451.008 426.24 342.656 534.592z" />
             </svg>
-            <a href="#">
+            <a href="/dashboard">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Tableau de Bord
                 </h5>
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Accéder au tableau de bord pour visualiser la
                 consommation d'électricité, d'eau et de gaz</p>
-            <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline"
+            <a href="/dashboard" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
                 <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -281,11 +281,11 @@ background-size: 10px 10px;;">
                 </g>
 
             </svg>
-            <a href="#">
+            <a href="/regions">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Regions</h5>
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Consulter les regions</p>
-            <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline"
+            <a href="/regions" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
                 <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -304,12 +304,12 @@ background-size: 10px 10px;;">
             <svg fill="#11B5E4" class="w-8 h-8 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
                 <path d="m773.596 1069.654 711.086 711.085c39.632 39.632 104.336 39.632 144.078 0l138.276-138.385c19.268-19.269 29.888-44.778 29.888-71.93 0-27.26-10.62-52.77-29.888-72.039l-698.714-698.714 11.495-32.625c63.5-178.675 18.284-380.45-115.284-514.018-123.715-123.605-305.126-171.01-471.648-128.313l272.281 272.282c32.516 32.406 50.362 75.652 50.362 121.744 0 45.982-17.846 89.227-50.362 121.744L654.48 751.17c-67.222 67.003-176.375 67.003-243.488 0L138.711 478.889c-42.589 166.522 4.707 347.934 128.313 471.648 123.714 123.715 306.22 172.325 476.027 127.218l30.545-8.101ZM1556.611 1920c-54.084 0-108.168-20.692-149.333-61.857L740.095 1190.96c-198.162 41.712-406.725-19.269-550.475-163.019C14.449 852.771-35.256 582.788 65.796 356.27l32.406-72.696 390.194 390.193c24.414 24.305 64.266 24.305 88.68 0l110.687-110.686c11.824-11.934 18.283-27.59 18.283-44.34 0-16.751-6.46-32.516-18.283-44.34L297.569 84.207 370.265 51.8C596.893-49.252 866.875.453 1041.937 175.515c155.026 155.136 212.833 385.157 151.851 594.815l650.651 650.651c39.961 39.852 61.967 92.95 61.967 149.443 0 56.383-22.006 109.482-61.967 149.334l-138.275 138.385c-41.275 41.165-95.36 61.857-149.553 61.857Z" fill-rule="evenodd"/>
             </svg>
-            <a href="/administration">
+            <a href="/users">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Administration
                 </h5>
             </a>
-            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Gestion des utilisateurs et historique</p>
-            <a href="/administration" class="inline-flex font-medium items-center text-blue-600 hover:underline"
+            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Gestion des utilisateurs</p>
+            <a href="/users" class="inline-flex font-medium items-center text-blue-600 hover:underline"
                 style="color: #252525">
                 Accéder à la page
                 <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
