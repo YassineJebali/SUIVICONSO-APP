@@ -19,7 +19,7 @@ class LocalSeeder extends Seeder
     {
         $types = ['gas', 'water', 'electricity'];
 
-        Local::factory()->count(10)->create()->each(function ($local) use ($types) {
+        Local::factory()->count(6)->create()->each(function ($local) use ($types) {
             foreach ($types as $type) {
                 $counter = $local->counters()->save(
                     Counter::factory()->state([
@@ -28,7 +28,7 @@ class LocalSeeder extends Seeder
                     ])->make()
                 );
 
-                Invoice::factory()->count(12)->state([
+                Invoice::factory()->count(20)->state([
                     'local_id' => $local->id,
                 ])->create()->each(function ($invoice) use ($counter) {
                     DB::table('counter_invoice')->insert([

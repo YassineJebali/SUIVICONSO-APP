@@ -26,7 +26,7 @@ class CounterSeeder extends Seeder
                     'local_id' => $local->id,
                 ])->create();
     
-                Invoice::factory()->count(12)->state([
+                Invoice::factory()->count(20)->state([
                     'local_id' => $local->id, // Add this line
                 ])->create()->each(function ($invoice) use ($counter) {
                     DB::table('counter_invoice')->insert([

@@ -69,7 +69,7 @@
             @foreach ($regions as $region)
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="/regions/{{ $region->id }}">
-                    <img class="rounded-t-lg" src="{{ asset($region->image) }}" alt="" />
+                    <img class="rounded-t-lg" src="{{ asset($region->imagepath) }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="/regions/{{ $region->id }}">
