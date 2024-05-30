@@ -44,7 +44,7 @@
         @endif
     </div>
     <div>
-                @if (session('error'))
+        @if (session('error'))
         <div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
             <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -64,10 +64,8 @@
     </div>
     <div class="flex justify-left space-x-1" style="margin-right: 9.375rem; margin-left: 9.375rem;">
         <a href="{{ url()->previous() }}">
-            <button type="button"
-                class="space-y-4 p-2 text-gray-500 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <svg fill="#000000" height="24px" width="24px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                    viewBox="0 0 512.001 512.001" xml:space="preserve">
+            <button type="button" class="space-y-4 p-2 text-gray-500 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <svg fill="#000000" height="24px" width="24px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.001 512.001" xml:space="preserve">
                     <g>
                         <g>
                             <path d="M384.834,180.699c-0.698,0-348.733,0-348.733,0l73.326-82.187c4.755-5.33,4.289-13.505-1.041-18.26
@@ -79,88 +77,219 @@
                         </g>
                     </g>
                 </svg>
-                
             </button>
         </a>
         <!-- Your existing buttons here -->
     </div>
 
-<div class="space-y-4 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-        style="margin-right: 9.375rem; margin-left: 9.375rem; margin-top:0.5rem; margin-bottom:2rem;">
-    <div>
-        <div class="mb-5 flex justify-between">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-4">
-                    Détails du Local
-                </h1>
-                <div class="flex justify-center space-x-1">
+    <div class="space-y-4 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style="margin-right: 9.375rem; margin-left: 9.375rem; margin-top:0.5rem; margin-bottom:2rem;">
+        <div>
+            <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 mb-8">
+                <ul class="flex flex-wrap -mb-px">
+                    <li class="me-2">
+                        <a href="#local-details" class="tab-link inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Détails du local</a>
+                    </li>
+                    <li class="me-2">
+                        <a href="#local-statistics" class="tab-link inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page">Statistiques du local</a>
+                    </li>
+                    <li class="me-2">
+                        <a href="#counter-list" class="tab-link inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Liste de compteurs</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="local-details" class="tab-content">
+                <div class="grid md:grid-cols-2 md:gap-6 mb-4">
+                    <div class="relative z-0 w-full mb-5 group" style="margin-bottom: 0px;">
+                        <h2 class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer font-mono ">Local : {{ $local->name }}</h2>
+                    </div>
+                    <div class="relative z-0 w-full mb-5 group" style="margin-bottom: 0px;">
+                        <h2 class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer font-mono ">Region : {{ $local->region->name }}</h2>
+                    </div>
+                </div>
+                <div class="relative z-0 w-full mb-5 group" style="margin-bottom: 0px;">
+                    <h2 class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer font-mono ">Addresse : {{ $local->address }}</h2>
+                </div>
+                <div class="flex justify-end space-x-1 pt-4">
                     <a href="/locals/{{ $local->id }}/edit">
-                        <button type="submit"
-                            class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Modifier
                         </button>
                     </a>
                     <form action="{{ route('locals.destroy', $local->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"
-                            class=" text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button type="submit" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Supprimer
                         </button>
                     </form>
                 </div>
             </div>
-
-            <div class="grid md:grid-cols-2 md:gap-6 mb-4">
-                <div class="relative z-0 w-full mb-5 group" style="margin-bottom: 0px;">
-                    <h2 class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer font-mono ">Local : {{ $local->name }}</h2>
+            <div id="local-statistics" class="tab-content">
+                <div>
+                    <select id="yearFilter" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">Toutes les années</option>
+                        @foreach($gasData->pluck('year')->unique() as $year)
+                        <option value="{{ $year }}">{{ $year }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="relative z-0 w-full mb-5 group" style="margin-bottom: 0px;">
-                    <h2 class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer font-mono ">Region : {{ $local->region->name }}</h2>
+                <div class="flex justify-center mb-8">
+                    <canvas id="invoiceChart"></canvas>
                 </div>
             </div>
-            <div class="relative z-0 w-full mb-5 group" style="margin-bottom: 0px;">
-                <h2 class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer font-mono ">Addresse : {{ $local->address }}</h2>
-            </div>
-            <h2 class="mt-6 text-lg font-bold leading-tight tracking-tight text-gray-900 md:text-xl dark:text-white mb-4">
-                Liste des Compteurs
-            </h2>
-            
-
-        <!-- Counter list -->
-        <div class="flex justify-center">
-            <table class="w-full text-md bg-gray-100 shadow border-gray-300 rounded mb-4">
-                <tbody>
-                    <tr class="border-b">
-                        <th class="text-left p-3 px-5">N.Compteur</th>
-                        <th class="text-left p-3 px-5">Moyenne de Consommation</th>
-                        <th class="text-left p-3 px-5">Type</th>
-                        <th></th>
-                    </tr>
-                    @foreach ($counters as $counter)
-                    <tr class="border-b hover:bg-orange-100 bg-gray-50">
-                        <td class="p-3 px-5">{{ $counter->serial_number }}</td>
-                        <td class="p-3 px-5">{{ $counter->avg_consumption }}</td>
-                        <td class="p-3 px-5">
-                            @switch($counter->type)
-                                @case('gas')
+            <!-- Counter list -->
+            <div id="counter-list" class="tab-content">
+                <div class="flex justify-center">
+                    <table class="w-full text-md bg-gray-100 shadow border-gray-300 rounded mb-4">
+                        <tbody>
+                            <tr class="border-b">
+                                <th class="text-left p-3 px-5">N.Compteur</th>
+                                <th class="text-left p-3 px-5">Moyenne de Consommation</th>
+                                <th class="text-left p-3 px-5">Type</th>
+                                <th></th>
+                            </tr>
+                            @foreach ($counters as $counter)
+                            <tr class="border-b hover:bg-orange-100 bg-gray-50">
+                                <td class="p-3 px-5">{{ $counter->serial_number }}</td>
+                                <td class="p-3 px-5">{{ $counter->avg_consumption }}</td>
+                                <td class="p-3 px-5">
+                                    @switch($counter->type)
+                                    @case('gas')
                                     <span class="inline-flex rounded-full bg-yellow-100 p-1 space-x-1 pl-2 pr-2 text-yellow-500">gaz</span>
                                     @break
-                                @case('electricity')
+                                    @case('electricity')
                                     <span class="inline-flex rounded-full bg-purple-100 p-1 pl-2 pr-2 space-x-1 text-purple-500">Eléctricité</span>
                                     @break
-                                @case('water')
+                                    @case('water')
                                     <span class="inline-flex rounded-full bg-blue-100 p-1 space-x-1 pl-2 pr-2 text-blue-500">Eau</span>
                                     @break
-                                @default
+                                    @default
                                     <span class="inline-flex rounded-full bg-gray-100 p-1 space-x-1 pl-2 pr-2 text-gray-500">Inconnu</span>
-                            @endswitch
-                        </td>
-                        <td class="p-3 px-5 flex justify-end">
-                            <a href="/counters/{{ $counter->id }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Voir</a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                                    @endswitch
+                                </td>
+                                <td class="p-3 px-5 flex justify-end">
+                                    <a href="/counters/{{ $counter->id }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Voir</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+        <script>
+            // Add click event listeners to all tab links
+            document.querySelectorAll('.tab-link').forEach(function(tabLink) {
+                tabLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Remove the 'active' class from all tab links
+                    document.querySelectorAll('.tab-link').forEach(function(tabLink) {
+                        tabLink.classList.remove('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
+                    });
+
+                    // Add the 'active' class to the clicked tab link
+                    this.classList.add('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
+
+                    // Hide all tab content divs
+                    document.querySelectorAll('.tab-content').forEach(function(tabContent) {
+                        tabContent.style.display = 'none';
+                    });
+
+                    // Show the clicked tab content div
+                    document.querySelector(this.getAttribute('href')).style.display = 'block';
+                });
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            var gasData = @json($gasData);
+            var waterData = @json($waterData);
+            var electricityData = @json($electricityData);
+            var counterType = @json($counter->type); // Assuming $counter->type exists and contains the counter type
+            var ctx = document.getElementById('invoiceChart').getContext('2d');
+            var yearFilter = document.getElementById('yearFilter');
+
+            function getColor(utilityType) {
+    switch (utilityType) {
+        case 'gas':
+            return '#FBBF24';
+        case 'water':
+            return '#89BCFB';
+        case 'electricity':
+            return '#6B3CF6';
+        default:
+            return 'rgba(75, 192, 192, 0.2)';
+    }
+}
+
+            function createChart(gasData, waterData, electricityData, isYearSelected) {
+    var labels = isYearSelected ? 
+        ['Dec', 'Nov', 'Oct', 'Sep', 'Aug', 'Jul', 'Jun', 'May', 'Apr', 'Mar', 'Feb', 'Jan'] : 
+        gasData.slice(-24).map(function(invoice) { return invoice.month + ' ' + invoice.year; }).reverse();
+
+    return new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Gaz',
+                data: gasData.slice(-24).map(function(invoice) { return invoice.consumption; }).reverse(),
+                backgroundColor: getColor('gas'),
+                borderColor: getColor('gas'),
+                fill: false,
+                tension: 0.1,
+            }, {
+                label: 'Eau',
+                data: waterData.slice(-24).map(function(invoice) { return invoice.consumption; }).reverse(),
+                backgroundColor: getColor('water'),
+                borderColor: getColor('water'),
+                fill: false,
+                tension: 0.1,
+            }, {
+                label: 'Electricité',
+                data: electricityData.slice(-24).map(function(invoice) { return invoice.consumption; }).reverse(),
+                backgroundColor: getColor('electricity'),
+                borderColor: getColor('electricity'),
+                fill: false,
+                tension: 0.1,
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Utility Consumption'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Month'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Consumption'
+                    }
+                }]
+            }
+        }
+    });
+}
+
+// Call the function to create the chart
+createChart(gasData, waterData, electricityData, yearFilter.checked);
+    </script>
 </x-layout>
