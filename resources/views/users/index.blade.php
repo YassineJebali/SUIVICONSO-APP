@@ -141,10 +141,10 @@
                                         <span class="bg-cyan-200 text-cyan-600 py-1 px-3 rounded-full text-xs">Administrateur</span>
                                         @break
                                     @case('inputuser')
-                                        <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Agent de saisie</span>
+                                        <span class="bg-orange-200 text-orange-600 py-1 px-3 rounded-full text-xs">Agent de saisie</span>
                                         @break
                                     @case('localmanager')
-                                        <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Responsable local</span>
+                                        <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Responsable local</span>
                                         @break
                                     @default
                                         <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">Inconnu</span>

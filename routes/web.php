@@ -14,6 +14,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\LocalFamilyController;
 use App\Http\Controllers\UserGroupController;
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -75,5 +76,5 @@ Route::post('/add-counters', [App\Http\Controllers\CounterController::class, 'st
 Route::get('/counters/{id}/edit', [App\Http\Controllers\CounterController::class, 'edit']);
 Route::put('/counters/{id}', [App\Http\Controllers\CounterController::class, 'update']);
 
-
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
